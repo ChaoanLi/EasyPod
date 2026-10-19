@@ -34,21 +34,20 @@ const summary = (ep: (typeof episodes)[number]) =>
 ---
 
 <Layout
-  title="轻松愉快 — 把日子，聊成故事。"
-  description="@ohaaayooo、@frank 和好朋友们的闲聊播客。聊生活、聊电影，也聊那些突然意识到的瞬间。"
+  title="轻松愉快 — 聊点平常的事"
+  description="@ohaaayooo、@frank 和朋友们的中文闲聊播客。聊电影、游戏，也聊近来遇到的小事。"
 >
   <Header />
   <main id="main-content" class="pod-home">
     <section class="pod-wrap pod-hero">
       <div class="pod-intro">
         <p class="pod-kicker">
-          <span class="on-air-dot"></span> THE EVERYDAY, ON RECORD
+          <span class="on-air-dot"></span> 轻松愉快 · 中文播客
         </p><h1>
-          把日子，<br />聊成<span class="pod-title-stroke">故事。</span>
+          聊点<br /><span class="pod-title-stroke">平常的事。</span>
         </h1><p class="pod-intro-copy">
-          @ohaaayooo、@frank，和好朋友们的闲聊。<br
-          />聊生活，聊电影，聊那些突然意识到的瞬间。<br
-          />没有标准答案，有时只是一起笑一下。
+          @ohaaayooo、@frank，和朋友们一起聊。<br
+          />电影、游戏，近来遇到的一件小事。<br />想到哪儿，就聊到哪儿。
         </p><div class="pod-subscribe">
           <a
             class="pod-button"
@@ -57,7 +56,7 @@ const summary = (ep: (typeof episodes)[number]) =>
             rel="noreferrer">在小宇宙收听 <span>↗</span></a
           ><a href="#episodes" class="pod-simple-link">全部节目 ↓</a>
         </div><div class="pod-hero-bottom">
-          <span>一档中文闲聊播客</span><span>WITH FRIENDS, FOR FRIENDS.</span>
+          <span>一档中文闲聊播客</span><span>在线收听 · RSS 订阅</span>
         </div>
       </div>
       {
@@ -71,7 +70,7 @@ const summary = (ep: (typeof episodes)[number]) =>
         ) : (
           <div class="pod-no-episodes">
             <>
-              <h2>下一次对话，正在路上。</h2>
+              <h2>暂时没有节目，过些时候再来看看。</h2>
               <a href="https://feed.xyzfm.space/6vnv3ae7g34t">
                 订阅节目 RSS ↗
               </a>
@@ -83,12 +82,10 @@ const summary = (ep: (typeof episodes)[number]) =>
     <section id="episodes" class="pod-wrap pod-episodes">
       <div class="pod-section-heading">
         <div>
-          <p class="pod-kicker">THE CONVERSATION ARCHIVE</p><h2>
-            慢慢听，不着急<span>。</span>
+          <p class="pod-kicker">往期录音</p><h2>
+            全部节目<span>。</span>
           </h2>
-        </div><span class="pod-episode-count"
-          >{episodes.length} 期对话 / 持续收录</span
-        >
+        </div><span class="pod-episode-count">共 {episodes.length} 期</span>
       </div>
       <div class="pod-episode-list">
         {
@@ -103,7 +100,7 @@ const summary = (ep: (typeof episodes)[number]) =>
       </div>
     </section>
     <section class="pod-wrap pod-platforms">
-      <p class="pod-kicker">选一个你习惯的地方，我们在那里见。</p><div>
+      <p class="pod-kicker">也可以在这些地方听</p><div>
         {
           SOCIALS.filter(s => s.name !== "Mail").map(s => (
             <a href={s.href} target="_blank" rel="noreferrer">

@@ -2,7 +2,7 @@ export const SITE = {
   website: "https://podcast.chaoanli.com/",
   author: "ohaaayooo",
   profile: "https://podcast.chaoanli.com/",
-  desc: "轻松愉快，和好朋友们聊聊生活、电影，以及那些突然意识到的瞬间。",
+  desc: "轻松愉快，@ohaaayooo、@frank 和朋友们的中文闲聊播客。聊电影、游戏，也聊近来遇到的小事。",
   title: "轻松愉快",
   ogImage: "logo.png",
   lightAndDarkMode: true,
