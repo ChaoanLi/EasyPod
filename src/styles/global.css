@@ -607,9 +607,24 @@ html[data-theme="dark"] {
   border-bottom: 1px solid var(--border);
   padding-bottom: 6px;
 }
+.pod-music-player .aplayer {
+  color: #30352d;
+}
+.pod-music-player .aplayer .aplayer-lrc p {
+  color: #30352d !important;
+}
+.pod-music-player .aplayer .aplayer-list ol li {
+  color: #30352d !important;
+}
 .fc {
+  --fc-border-color: var(--border);
+  --fc-neutral-bg-color: var(--pod-soft);
+  --fc-page-bg-color: var(--background);
   font-family: var(--pod-sans) !important;
   font-size: 12px;
+}
+.fc th {
+  background: var(--pod-soft);
 }
 .fc .fc-button-primary {
   background: var(--foreground) !important;

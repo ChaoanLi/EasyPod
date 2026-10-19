@@ -85,7 +85,7 @@ export default function FullCalendarClient() {
                     onClick={() => setSelected(null)}
                 >
                     <div
-                        className="bg-white p-6 rounded-lg max-w-lg w-full shadow-lg"
+                        className="bg-background text-foreground p-6 rounded-lg max-w-lg w-full shadow-lg"
                         onClick={e => e.stopPropagation()}
                     >
                         <h2 className="text-xl font-bold mb-2">
