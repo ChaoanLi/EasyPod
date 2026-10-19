@@ -1,9 +1,9 @@
 export const SITE = {
-  website: "https://www.easypod.fun/", // replace this with your deployed domain
+  website: "https://podcast.chaoanli.com/",
   author: "ohaaayooo",
-  profile: "https://www.easypod.fun/",
+  profile: "https://podcast.chaoanli.com/",
   desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
-  title: "easypod.fun",
+  title: "轻松愉快",
   ogImage: "logo.png",
   lightAndDarkMode: true,
   postPerIndex: 4,
