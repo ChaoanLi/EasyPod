@@ -2,11 +2,8 @@
 const path = Astro.url.pathname;
 const links = [
   { href: "/#episodes", label: "节目" },
-  { href: "/music", label: "歌单" },
-  { href: "/calendar", label: "不愉快日历" },
-  { href: "/food", label: "餐厅" },
-  { href: "/posts", label: "想象" },
-  { href: "/about", label: "关于我们" },
+  { href: "/about", label: "关于节目" },
+  { href: "https://feed.xyzfm.space/6vnv3ae7g34t", label: "RSS 订阅" },
 ];
 ---
 
@@ -16,7 +13,7 @@ const links = [
     <a href="/" class="pod-wordmark"
       >轻松愉快<span class="pod-wordmark-dot">✳</span></a
     >
-    <span class="pod-header-note">生活没有标准答案，<br />我们边聊边找。</span>
+    <span class="pod-header-note">一档中文闲聊播客</span>
     <nav class="pod-desktop-nav" aria-label="主要导航">
       {
         links.map(link => (

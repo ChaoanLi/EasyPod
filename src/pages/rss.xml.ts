@@ -1,21 +1,13 @@
-import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
-import { getPath } from "@/utils/getPath";
-import getSortedPosts from "@/utils/getSortedPosts";
-import { SITE } from "@/config";
+import type { APIRoute } from "astro";
 
-export async function GET() {
-  const posts = await getCollection("blog");
-  const sortedPosts = getSortedPosts(posts);
-  return rss({
-    title: SITE.title,
-    description: SITE.desc,
-    site: SITE.website,
-    items: sortedPosts.map(({ data, id, filePath }) => ({
-      link: getPath(id, filePath),
-      title: data.title,
-      description: data.description,
-      pubDate: new Date(data.modDatetime ?? data.pubDatetime),
-    })),
+// Preserve the subscription URL, serving the actual podcast rather than
+// template articles. The daily Pages build refreshes this static mirror.
+export const GET: APIRoute = async () => {
+  const response = await fetch("https://feed.xyzfm.space/6vnv3ae7g34t", {
+    signal: AbortSignal.timeout(20000),
   });
-}
+  if (!response.ok) throw new Error(`Podcast RSS returned ${response.status}`);
+  return new Response(await response.text(), {
+    headers: { "Content-Type": "application/rss+xml; charset=utf-8" },
+  });
+};
