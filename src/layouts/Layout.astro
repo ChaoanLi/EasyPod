@@ -53,7 +53,7 @@ const structuredData = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/logo.png" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
@@ -111,30 +111,6 @@ const structuredData = {
       href={new URL("rss.xml", Astro.site)}
     />
 
-    <!-- FullCalendar 样式（CDN 引入） -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@fullcalendar/common@5.11.5/main.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.11.5/main.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/aplayer/dist/APlayer.min.css"
-    />
-    <script src="https://unpkg.com/aplayer/dist/APlayer.min.js" defer is:inline
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/aplayer/dist/APlayer.min.css"
-    />
-    <script src="https://unpkg.com/aplayer/dist/APlayer.min.js" defer is:inline
-    ></script>
-
-    <script src="https://unpkg.com/meting/dist/Meting.min.js" defer is:inline
-    ></script>
     <meta name="theme-color" content="" />
 
     {

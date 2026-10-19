@@ -1,26 +1,30 @@
 ---
-import Hr from "./Hr.astro";
-import Socials from "./Socials.astro";
-
-const currentYear = new Date().getFullYear();
-
-export interface Props {
-  noMarginTop?: boolean;
-}
-
-const { noMarginTop = false } = Astro.props;
+import { SOCIALS } from "@/constants";
+const year = new Date().getFullYear();
 ---
 
-<footer class:list={["w-full", { "mt-auto": !noMarginTop }]}>
-  <Hr noPadding />
-  <div
-    class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"
-  >
-    <Socials centered />
-    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <span>Copyright &#169; {currentYear}</span>
-      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-      <span>All rights reserved.</span>
+<footer class="pod-footer">
+  <div class="pod-wrap">
+    <div class="pod-footer-main">
+      <div>
+        <a class="pod-footer-title" href="/">轻松愉快<span>✳</span></a><p>
+          一些闲聊，一点共鸣。<br />和朋友们一起，认真地轻松一下。
+        </p>
+      </div><div class="pod-footer-links">
+        <span class="pod-kicker">在别处，也能听见我们</span><div>
+          {
+            SOCIALS.filter(s => s.name !== "Mail").map(s => (
+              <a href={s.href} target="_blank" rel="noreferrer">
+                {s.name} ↗
+              </a>
+            ))
+          }
+        </div><a href="mailto:amerlca@163.com">写信给我们 ↗</a>
+      </div>
+    </div><div class="pod-footer-bottom">
+      <span>© {year} 轻松愉快</span><a href="https://chaoanli.com/"
+        >Chaoan 的个人主页 ↗</a
+      ><a href="https://feed.xyzfm.space/6vnv3ae7g34t">RSS 订阅 ↗</a>
     </div>
   </div>
 </footer>

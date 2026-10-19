@@ -1,119 +1,144 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
-import LinkButton from "@/components/LinkButton.astro";
-import Card from "@/components/Card.astro";
-import Hr from "@/components/Hr.astro";
-import getSortedPosts from "@/utils/getSortedPosts";
-import IconRss from "@/assets/icons/IconRss.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
-import { SITE } from "@/config";
 import Parser from "rss-parser";
 import { SOCIALS } from "@/constants";
 
-function getCover(ep: any) {
-  return (
-    ep.itunes?.image ??
-    ep.itunes?.["image:href"] ??
-    ep["itunes:image"]?.href ??
-    coverFallback
-  );
-}
-
-function getXiaoyuzhouLink(ep: any) {
-  return ep.link;
-}
-
-const posts = await getCollection("blog");
-
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-const parser = new Parser();
+import type { Episode } from "@/types/podcast";
+import FeaturedEpisode from "@/components/FeaturedEpisode.astro";
+import EpisodeRow from "@/components/EpisodeRow.astro";
+const parser = new Parser({ timeout: 20000 });
 const feed = await parser.parseURL("https://feed.xyzfm.space/6vnv3ae7g34t");
-const episodes = feed.items;
-const coverFallback = feed.image?.url ?? "/logo.png";
-const challenges = [
-  // 👉 后续继续往下加即可
-  "本期挑战：给U&I介绍一下男朋友",
-  "本期挑战：记录一下自己人生的大事件",
-  "本期挑战：读完一本书的一半",
-  "本期挑战：好好地打打游戏",
-  "本期挑战：录一期vlog",
-  "本期挑战：聊聊2017",
-  "本期挑战：看电影《从21世纪安全撤离》",
-  "本期挑战：给别人做一道菜",
-  "本期挑战：健康作息；看电影红辣椒，脱口秀专场《你谁啊》",
-  "本期挑战：睡觉前，起床后不玩手机",
-];
+const episodes: Episode[] = feed.items;
+const latest = episodes[0];
+const cover = latest?.itunes?.image || feed.image?.url || "/logo.png";
+const dateLabel = (date?: string) => {
+  const value = new Date(date || "");
+  return Number.isNaN(value.getTime())
+    ? ""
+    : new Intl.DateTimeFormat("zh-CN", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        timeZone: "Asia/Shanghai",
+      }).format(value);
+};
+const summary = (ep: (typeof episodes)[number]) =>
+  String(ep.contentSnippet || ep.itunes?.summary || "")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 120);
 ---
 
-<Layout>
+<Layout
+  title="轻松愉快 — 把日子，聊成故事。"
+  description="@ohaaayooo、@frank 和好朋友们的闲聊播客。聊生活、聊电影，也聊那些突然意识到的瞬间。"
+>
   <Header />
-  <main id="main-content" data-layout="index">
-    <section id="hero" class="pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        轻松愉快
-      </h1>
-      <p class="mb-4 text-gray-600">
-        @ohaaayooo, @frank
-        和好朋友们的闲聊播客。在这里你可以找到，往期节目，相关链接，轻松歌单，不愉快日历，安利的餐厅和一些其他和想象有关的东西。(๑•̀ㅂ•́)و✧
-      </p>
-      <!-- 播客平台链接 -->
-      <div class="mt-4 flex flex-wrap justify-center gap-4 text-sm">
-        <a
-          href="https://feed.xyzfm.space/6vnv3ae7g34t"
-          target="_blank"
-          class="inline-flex items-center gap-2 rounded-md border border-accent px-3 py-1.5 text-accent transition hover:bg-accent hover:text-white"
-          aria-label="RSS Feed"
-          title="RSS 订阅"
-        >
-          <IconRss class="h-4 w-4" />
-          RSS 订阅
-        </a>
+  <main id="main-content" class="pod-home">
+    <section class="pod-wrap pod-hero">
+      <div class="pod-intro">
+        <p class="pod-kicker">
+          <span class="on-air-dot"></span> THE EVERYDAY, ON RECORD
+        </p><h1>
+          把日子，<br />聊成<span class="pod-title-stroke">故事。</span>
+        </h1><p class="pod-intro-copy">
+          @ohaaayooo、@frank，和好朋友们的闲聊。<br
+          />聊生活，聊电影，聊那些突然意识到的瞬间。<br
+          />没有标准答案，有时只是一起笑一下。
+        </p><div class="pod-subscribe">
+          <a
+            class="pod-button"
+            href="https://www.xiaoyuzhoufm.com/podcast/67c01958ef312508b9d17779"
+            target="_blank"
+            rel="noreferrer">在小宇宙收听 <span>↗</span></a
+          ><a href="#episodes" class="pod-simple-link">全部节目 ↓</a>
+        </div><div class="pod-hero-bottom">
+          <span>一档中文闲聊播客</span><span>WITH FRIENDS, FOR FRIENDS.</span>
+        </div>
       </div>
-
       {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="mr-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
-            <Socials />
+        latest ? (
+          <FeaturedEpisode
+            episode={latest}
+            cover={cover}
+            date={dateLabel(latest.pubDate)}
+            description={summary(latest)}
+          />
+        ) : (
+          <div class="pod-no-episodes">
+            <>
+              <h2>下一次对话，正在路上。</h2>
+              <a href="https://feed.xyzfm.space/6vnv3ae7g34t">
+                订阅节目 RSS ↗
+              </a>
+            </>
           </div>
         )
       }
     </section>
-
-    <Hr />
-    <section id="podcast" class="pt-12 pb-6">
-      <h2 class="mb-4 text-center text-2xl font-semibold tracking-wide">
-        🎧 Episodes
-      </h2>
-      <div class="space-y-6">
+    <section id="episodes" class="pod-wrap pod-episodes">
+      <div class="pod-section-heading">
+        <div>
+          <p class="pod-kicker">THE CONVERSATION ARCHIVE</p><h2>
+            慢慢听，不着急<span>。</span>
+          </h2>
+        </div><span class="pod-episode-count"
+          >{episodes.length} 期对话 / 持续收录</span
+        >
+      </div>
+      <div class="pod-episode-list">
         {
-          episodes.map((ep: any, index: number) => (
-            <article class="flex flex-col rounded-lg border border-gray-200 shadow-sm transition hover:shadow sm:flex-row">
-              <img
-                src={getCover(ep)}
-                alt={ep.title}
-                class="m-4 w-full flex-shrink-0 self-center rounded-md object-cover sm:h-36 sm:w-36"
-              />
-              <div class="flex-1 px-4 py-3">
-                <h3 class="mb-1 text-lg font-semibold">{ep.title}</h3>
-                <p class="mb-2 text-xs text-gray-400">{ep.pubDate}</p>
-                <audio controls class="mb-2 w-full">
-                  <source src={ep.enclosure?.url} type="audio/mpeg" />
-                </audio>
-                {challenges[index] && (
-                  <p class="mt-2 text-sm font-medium text-gray-600">
-                    {challenges[index]}
-                  </p>
-                )}
-              </div>
-            </article>
+          episodes.map((ep, index) => (
+            <EpisodeRow
+              episode={ep}
+              index={String(episodes.length - index).padStart(2, "0")}
+              date={dateLabel(ep.pubDate)}
+            />
+          ))
+        }
+      </div>
+    </section>
+    <section class="pod-detours">
+      <div class="pod-wrap">
+        <div class="pod-section-heading">
+          <div>
+            <p class="pod-kicker">BETWEEN EPISODES</p><h2>声音之外的小事。</h2>
+          </div><span class="pod-side-note">生活里捡来的，顺手放在这里。</span>
+        </div><div class="pod-detour-grid">
+          <a href="/music" class="pod-detour"
+            ><span class="pod-detour-symbol">♫</span><span class="pod-kicker"
+              >01 / ON REPEAT</span
+            ><h3>轻松歌单</h3><p>有些话，歌里已经唱过了。</p><span
+              class="pod-detour-arrow">↗</span
+            ></a
+          ><a href="/calendar" class="pod-detour"
+            ><span class="pod-detour-symbol">☂</span><span class="pod-kicker"
+              >02 / THAT HAPPENED</span
+            ><h3>不愉快日历</h3><p>倒霉的日子，也值得记住。</p><span
+              class="pod-detour-arrow">↗</span
+            ></a
+          ><a href="/food" class="pod-detour"
+            ><span class="pod-detour-symbol">◡</span><span class="pod-kicker"
+              >03 / GOOD TASTE</span
+            ><h3>餐厅安利</h3><p>好好吃饭，也是正经事。</p><span
+              class="pod-detour-arrow">↗</span
+            ></a
+          >
+        </div>
+      </div>
+    </section>
+    <section class="pod-wrap pod-platforms">
+      <p class="pod-kicker">选一个你习惯的地方，我们在那里见。</p><div>
+        {
+          SOCIALS.filter(s => s.name !== "Mail").map(s => (
+            <a href={s.href} target="_blank" rel="noreferrer">
+              {s.name}
+              <span>↗</span>
+            </a>
           ))
         }
       </div>
@@ -121,13 +146,17 @@ const challenges = [
   </main>
   <Footer />
 </Layout>
-
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset?.layout;
-    if (indexLayout) {
-      sessionStorage.setItem("backUrl", "/");
-    }
-  });
+  // Only one conversation plays at a time, including the featured episode.
+  document.addEventListener(
+    "play",
+    event => {
+      if (!(event.target instanceof HTMLAudioElement)) return;
+      const current = event.target;
+      document.querySelectorAll("audio").forEach(audio => {
+        if (audio !== current) audio.pause();
+      });
+    },
+    true
+  );
 </script>

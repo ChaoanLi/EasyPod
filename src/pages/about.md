@@ -1,36 +1,24 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "关于轻松愉快"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
+## 和好朋友，聊聊普通的日子。
 
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
+轻松愉快，是 @ohaaayooo、@frank 和好朋友们的中文闲聊播客。
 
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
+聊生活，也聊电影、游戏、一本书、一顿饭。有时从一件小事开始，聊着聊着，就到了意想不到的地方。
 
-<div>
-  <img src="/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
-</div>
+我们把这些对话留在这里。希望你在散步、通勤、做饭，或者只是想放空一下的时候，能找到一点陪伴。
 
-## Tech Stack
+## 声音之外
 
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
+- [轻松歌单](/music)：主播和朋友们喜欢的音乐。
+- [不愉快日历](/calendar)：把倒霉的日子记下来，过一阵再回头看看。
+- [餐厅安利](/food)：主播和朋友们的美食地图。
 
-## Features
+## 继续听，或者写封信。
 
-Here are certain features of this site.
+在[小宇宙](https://www.xiaoyuzhoufm.com/podcast/67c01958ef312508b9d17779)、[Apple Podcasts](https://podcasts.apple.com/cn/podcast/轻松愉快/id1802566456)、[Spotify](https://open.spotify.com/show/3rrmhvnm17w2NzpJjEBICH) 和 [Bilibili](https://space.bilibili.com/37411963/lists/5004683?type=season) 找到我们，也可以通过 [RSS](https://feed.xyzfm.space/6vnv3ae7g34t) 订阅。
 
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
-
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
+想分享一个故事，或者推荐一个话题？[写信给我们](mailto:amerlca@163.com)。

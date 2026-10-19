@@ -1,45 +1,35 @@
 ---
-import { getCollection } from "astro:content";
 import Main from "@/layouts/Main.astro";
 import Layout from "@/layouts/Layout.astro";
-import Tag from "@/components/Tag.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import getUniqueTags from "@/utils/getUniqueTags";
-import { SITE } from "@/config";
-
-const posts = await getCollection("blog");
-
-let tags = getUniqueTags(posts);
 ---
 
-<Layout title={`Foods | ${SITE.title}`}>
-  <Header />
-  <Main pageTitle="美食安利！" pageDesc="主播和朋友们爱吃的东西">
-    <!-- 一：Google My Maps 嵌入 -->
-    <section>
-      <h2 class="mb-4 text-2xl font-semibold">Oversea</h2>
+<Layout title="餐厅安利 | 轻松愉快"
+  ><Header /><Main
+    pageTitle="好好吃饭。"
+    pageDesc="主播和朋友们的美食地图。把好吃的地方记下来，下次再一起去。"
+    ><div class="pod-food-grid">
       <a
-        class="inline-block rounded bg-yellow-500 px-4 py-2 text-white transition hover:bg-red-600"
+        class="pod-map-link"
         href="https://maps.app.goo.gl/ZaLTKN6CqdmwKLpCA?g_st=ac"
         target="_blank"
-        rel="noopener"
-      >
-        Google Map
-      </a>
-    </section>
-    <!-- 二：高德地图链接 -->
-    <section>
-      <h2 class="mb-4 text-2xl font-semibold">China Mainland</h2>
-      <a
-        class="inline-block rounded bg-yellow-500 px-4 py-2 text-white transition hover:bg-red-600"
+        rel="noreferrer"
+        ><span class="pod-map-symbol">◎</span><span class="pod-kicker"
+          >AROUND THE WORLD</span
+        ><h2>在世界的某个角落</h2><p>
+          出门在外，也想找到一顿让人开心的饭。
+        </p><span>打开 Google 地图 ↗</span></a
+      ><a
+        class="pod-map-link"
         href="https://mmapgwh.map.qq.com/shortlink/short?l=_1b65052e4ac151b516b54112589d5363"
         target="_blank"
-        rel="noopener"
-      >
-        Tencent Map
-      </a>
-    </section>
-  </Main>
-  <Footer />
-</Layout>
+        rel="noreferrer"
+        ><span class="pod-map-symbol">◡</span><span class="pod-kicker"
+          >CLOSER TO HOME</span
+        ><h2>熟悉的街头巷尾</h2><p>在国内，跟着朋友们的安利慢慢找。</p><span
+          >打开腾讯地图 ↗</span
+        ></a>
+    </div></Main
+  ><Footer /></Layout
+>
