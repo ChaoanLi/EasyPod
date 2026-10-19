@@ -1,0 +1,59 @@
+---
+import type { Episode } from "@/types/podcast";
+interface Props {
+  episode: Episode;
+  cover: string;
+  date: string;
+  description: string;
+}
+const { episode, cover, date, description } = Astro.props;
+---
+
+<article class="pod-latest">
+  <div class="pod-latest-top">
+    <span>NEWEST CONVERSATION</span><span>最新一期 ↗</span>
+  </div>
+  <div class="pod-latest-art">
+    <img
+      src={cover}
+      alt="轻松愉快播客封面"
+      width="220"
+      height="220"
+      fetchpriority="high"
+    />
+    <span class="record-ring ring-one"></span>
+    <span class="record-ring ring-two"></span>
+    <span class="cover-sticker">按下播放，<br />坐下来聊会儿。</span>
+  </div>
+  <div class="pod-latest-copy">
+    <p class="pod-kicker">
+      {date}{episode.itunes?.duration ? ` · ${episode.itunes.duration}` : ""}
+    </p>
+    <h2>{episode.title}</h2>
+    {
+      description && (
+        <p class="pod-episode-summary">
+          {description}
+          {description.length === 120 ? "…" : ""}
+        </p>
+      )
+    }
+    {
+      episode.enclosure?.url && (
+        <audio controls preload="none" aria-label={`收听：${episode.title}`}>
+          <source
+            src={episode.enclosure.url}
+            type={episode.enclosure.type || "audio/mpeg"}
+          />
+        </audio>
+      )
+    }
+    <a
+      class="pod-episode-source"
+      href={episode.link ||
+        "https://www.xiaoyuzhoufm.com/podcast/67c01958ef312508b9d17779"}
+      target="_blank"
+      rel="noreferrer">节目详情与评论 ↗</a
+    >
+  </div>
+</article>

@@ -1,0 +1,43 @@
+---
+import type { Episode } from "@/types/podcast";
+interface Props {
+  episode: Episode;
+  index: string;
+  date: string;
+}
+const { episode, index, date } = Astro.props;
+---
+
+<article class="pod-episode-row">
+  <span class="pod-episode-index">{index}</span>
+  <div class="pod-episode-info">
+    <p class="pod-kicker">
+      {date}{episode.itunes?.duration ? ` · ${episode.itunes.duration}` : ""}
+    </p>
+    <h3>
+      <a href={episode.link || "#episodes"} target="_blank" rel="noreferrer"
+        >{episode.title}</a>
+    </h3>
+  </div>
+  {
+    episode.enclosure?.url ? (
+      <details class="pod-listen">
+        <>
+          <summary>
+            收听 <span>＋</span>
+          </summary>
+          <audio controls preload="none" aria-label={`收听：${episode.title}`}>
+            <source
+              src={episode.enclosure.url}
+              type={episode.enclosure.type || "audio/mpeg"}
+            />
+          </audio>
+        </>
+      </details>
+    ) : (
+      <a class="pod-simple-link" href={episode.link || "#episodes"}>
+        节目详情 ↗
+      </a>
+    )
+  }
+</article>
