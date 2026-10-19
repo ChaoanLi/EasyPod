@@ -1,30 +1,11 @@
 ---
-import { SOCIALS } from "@/constants";
 const year = new Date().getFullYear();
 ---
 
-<footer class="pod-footer">
-  <div class="pod-wrap">
-    <div class="pod-footer-main">
-      <div>
-        <a class="pod-footer-title" href="/">轻松愉快<span>✳</span></a><p>
-          一些闲聊，一点共鸣。<br />和朋友们一起，认真地轻松一下。
-        </p>
-      </div><div class="pod-footer-links">
-        <span class="pod-kicker">在别处，也能听见我们</span><div>
-          {
-            SOCIALS.filter(s => s.name !== "Mail").map(s => (
-              <a href={s.href} target="_blank" rel="noreferrer">
-                {s.name} ↗
-              </a>
-            ))
-          }
-        </div><a href="mailto:amerlca@163.com">写信给我们 ↗</a>
-      </div>
-    </div><div class="pod-footer-bottom">
-      <span>© {year} 轻松愉快</span><a href="https://chaoanli.com/"
-        >Chaoan 的个人主页 ↗</a
-      ><a href="https://feed.xyzfm.space/6vnv3ae7g34t">RSS 订阅 ↗</a>
-    </div>
+<footer class="pod-footer pod-footer-compact">
+  <div class="pod-wrap pod-footer-bottom">
+    <span>© {year} 轻松愉快</span><a href="mailto:amerlca@163.com"
+      >联系节目 ↗</a
+    ><a href="https://feed.xyzfm.space/6vnv3ae7g34t">RSS 订阅 ↗</a>
   </div>
 </footer>
