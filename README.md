@@ -1,89 +1,65 @@
-# Relax & Enjoy Podcast Website
+# EasyPod · 轻松愉快
 
-This is a personal podcast website built with the [AstroPaper](https://github.com/yyy0806/astro-paper) theme, featuring podcast episodes, an "Unlucky Calendar", and a global food recommendations map.
+The website for 轻松愉快, a Mandarin conversation podcast about films, games, and everyday life.
 
-🏠 **Live Demo**: [https://www.easypod.fun/](https://www.easypod.fun/)
+[Podcast website](https://podcast.chaoanli.com/) · [RSS feed](https://feed.xyzfm.space/6vnv3ae7g34t) · [Deployment guide](DEPLOY.md)
 
-<!-- Scale to 1/4 of container width -->
-<img src="/public/logo.png" alt="logo" width="25%" />
----
+<img src="public/logo.png" alt="轻松愉快 podcast logo" width="160" />
 
-## Key Features
+## Features
 
-- **Podcast Page**: Automatically fetches the latest episodes via RSS (`https://feed.xyzfm.space/6vnv3ae7g34t`).
-- **Social Links**: Supports links to platforms like Xiaoyuzhou, Apple Podcasts, and Spotify.
-- **Unlucky Calendar**: Implemented with [FullCalendar](https://fullcalendar.io/) to log and view life’s unfortunate events.
-- **Global Food Map**: Displays regional food recommendations using a map component (Leaflet or Mapbox).
-- **Default Styling**: Retains AstroPaper’s original typography and layout, with bilingual (EN/CN) support.
+- A featured episode and a full episode list built from the podcast RSS feed.
+- Browser audio playback and links to listening platforms.
+- Responsive pages built with Astro, React, and Tailwind CSS.
+- Static deployment to GitHub Pages.
 
----
+The calendar and food pages are preserved in `src/archived-pages/`; they are not current routes in `src/pages/`.
 
-## Tech Stack
+## Local development
 
-- **Framework**: Astro
-- **Theme**: AstroPaper
-- **Styling**: Tailwind CSS
-- **Calendar**: @fullcalendar/react, @fullcalendar/daygrid, @fullcalendar/timegrid
-- **Map**: Leaflet or Mapbox GL JS
-- **Deployment**: Vercel
+Use Node.js 22 and pnpm 10, as documented in [DEPLOY.md](DEPLOY.md).
 
----
+```sh
+git clone https://github.com/ChaoanLi/EasyPod.git
+cd EasyPod
+pnpm install --frozen-lockfile
+pnpm run dev
+```
 
-## Local Development
+Open the local URL printed by Astro.
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/qsyk.git
-   cd qsyk
-   ```
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-3. **Start development server**:
-   ```bash
-   npm run dev
-   ```
-4. **Open in browser**:
-   ```
-   http://localhost:3000
-   ```
+```sh
+pnpm run build
+pnpm run preview
+```
 
----
+The build fetches the external podcast RSS feed and fonts for sharing images, so it requires network access.
 
-## Configuration
+## Editing the site
 
-- **RSS Source**: Update `podcastFeedUrl` in `src/config.ts` or the relevant component.
-- **Calendar Events**: Maintain your unlucky events list in `src/data/calendar-events.ts` following FullCalendar’s data format.
-- **Food Map Markers**: Add or edit location coordinates and descriptions in `src/data/food-map.ts`.
-- **Font Settings**: If you need to adjust Chinese fonts, configure `font-family` in `astro.config.mjs` or override in `src/styles/global.css`.
-
----
+| Location | Purpose |
+| --- | --- |
+| `src/pages/index.astro` | Homepage, RSS feed URL, and episode list |
+| `src/config.ts` | Site title, description, language, and canonical domain |
+| `src/constants.ts` | Social and listening-platform links |
+| `src/components/` | Episode cards, player, navigation, and shared UI |
+| `src/data/blog/` | Markdown content retained in the repository |
+| `public/` | Logo and other static assets |
+| `src/archived-pages/` | Retained calendar and food pages |
 
 ## Deployment
 
-1. **Push changes to GitHub**:
-   ```bash
-   git push origin main
-   ```
-2. **Connect to Vercel**: Log in to Vercel and link your GitHub repository.
-3. **Select `main` branch**: Vercel will build and publish automatically.
-
----
+GitHub Actions builds and deploys the static site to GitHub Pages. See [DEPLOY.md](DEPLOY.md) for domain setup, scheduled RSS refreshes, and manual deployment.
 
 ## Contributing
 
-Contributions are welcome. Please fork the repo and submit a pull request.
+Create a branch, make your changes, and open a pull request. Before submitting, run the relevant checks:
 
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Commit your changes: `git commit -m "Add your feature"
-4. Push to branch: `git push origin feature/your-feature`
-5. Open a Pull Request on GitHub.
+```sh
+pnpm run lint
+pnpm run build
+```
 
----
+## Credits and license
 
-## License
-
-This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
-
+Based on the [AstroPaper](https://github.com/yyy0806/astro-paper) theme. See [LICENSE](LICENSE) for license terms.
