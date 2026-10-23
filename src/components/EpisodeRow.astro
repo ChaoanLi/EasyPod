@@ -2,14 +2,24 @@
 import type { Episode } from "@/types/podcast";
 interface Props {
   episode: Episode;
+  cover: string;
   index: string;
   date: string;
 }
-const { episode, index, date } = Astro.props;
+const { episode, cover, index, date } = Astro.props;
 ---
 
 <article class="pod-episode-row">
   <span class="pod-episode-index">{index}</span>
+  <img
+    class="pod-episode-cover"
+    src={cover}
+    alt={`${episode.title || "轻松愉快"} · 单集封面`}
+    width="96"
+    height="96"
+    loading="lazy"
+    decoding="async"
+  />
   <div class="pod-episode-info">
     <p class="pod-kicker">
       {date}{episode.itunes?.duration ? ` · ${episode.itunes.duration}` : ""}

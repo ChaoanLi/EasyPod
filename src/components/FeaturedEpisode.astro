@@ -16,7 +16,7 @@ const { episode, cover, date, description } = Astro.props;
   <div class="pod-latest-art">
     <img
       src={cover}
-      alt="轻松愉快播客封面"
+      alt={`${episode.title || "轻松愉快"} · 单集封面`}
       width="220"
       height="220"
       fetchpriority="high"

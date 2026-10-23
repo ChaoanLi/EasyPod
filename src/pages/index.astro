@@ -12,7 +12,8 @@ const parser = new Parser({ timeout: 20000 });
 const feed = await parser.parseURL("https://feed.xyzfm.space/6vnv3ae7g34t");
 const episodes: Episode[] = feed.items;
 const latest = episodes[0];
-const cover = latest?.itunes?.image || feed.image?.url || "/logo.png";
+const defaultCover = feed.itunes?.image || feed.image?.url || "/logo.png";
+const cover = latest?.itunes?.image || defaultCover;
 const dateLabel = (date?: string) => {
   const value = new Date(date || "");
   return Number.isNaN(value.getTime())
@@ -92,6 +93,7 @@ const summary = (ep: (typeof episodes)[number]) =>
           episodes.map((ep, index) => (
             <EpisodeRow
               episode={ep}
+              cover={ep.itunes?.image || defaultCover}
               index={String(episodes.length - index).padStart(2, "0")}
               date={dateLabel(ep.pubDate)}
             />

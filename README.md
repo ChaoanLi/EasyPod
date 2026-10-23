@@ -9,6 +9,7 @@ The website for 轻松愉快, a Mandarin conversation podcast about films, games
 ## Features
 
 - A featured episode and a full episode list built from the podcast RSS feed.
+- Per-episode artwork synced from RSS on each build, with the show cover as a fallback.
 - Browser audio playback and links to listening platforms.
 - Responsive pages built with Astro, React, and Tailwind CSS.
 - Static deployment to GitHub Pages.
