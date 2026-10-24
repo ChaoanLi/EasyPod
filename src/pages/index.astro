@@ -57,7 +57,7 @@ const summary = (ep: (typeof episodes)[number]) =>
             rel="noreferrer">在小宇宙收听 <span>↗</span></a
           ><a href="#episodes" class="pod-simple-link">全部节目 ↓</a>
         </div><div class="pod-hero-bottom">
-          <span>一档中文闲聊播客</span><span>在线收听 · RSS 订阅</span>
+          <span>一档中文闲聊播客</span><span>在线收听</span>
         </div>
       </div>
       {
@@ -70,12 +70,7 @@ const summary = (ep: (typeof episodes)[number]) =>
           />
         ) : (
           <div class="pod-no-episodes">
-            <>
-              <h2>暂时没有节目，过些时候再来看看。</h2>
-              <a href="https://feed.xyzfm.space/6vnv3ae7g34t">
-                订阅节目 RSS ↗
-              </a>
-            </>
+            <h2>暂时没有节目，过些时候再来看看。</h2>
           </div>
         )
       }

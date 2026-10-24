@@ -13,6 +13,6 @@ title: "关于轻松愉快"
 
 ## 在哪里听
 
-[小宇宙](https://www.xiaoyuzhoufm.com/podcast/67c01958ef312508b9d17779)、[Apple Podcasts](https://podcasts.apple.com/cn/podcast/轻松愉快/id1802566456)、[Spotify](https://open.spotify.com/show/3rrmhvnm17w2NzpJjEBICH) 和 [Bilibili](https://space.bilibili.com/37411963/lists/5004683?type=season) 都有节目，也可以通过 [RSS](https://feed.xyzfm.space/6vnv3ae7g34t) 订阅。
+[小宇宙](https://www.xiaoyuzhoufm.com/podcast/67c01958ef312508b9d17779)、[Apple Podcasts](https://podcasts.apple.com/cn/podcast/轻松愉快/id1802566456)、[Spotify](https://open.spotify.com/show/3rrmhvnm17w2NzpJjEBICH) 和 [Bilibili](https://space.bilibili.com/37411963/lists/5004683?type=season) 都有节目。
 
 有想聊的事，或是哪一期说错了，欢迎[写信给我们](mailto:amerlca@163.com)。
